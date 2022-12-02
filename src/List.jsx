@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Element from './Element';
+
 const List = ({ ratesInProps }) => {
   const ratesElements = ratesInProps.map((rate) => (
     <Element key={rate.id} {...rate} />
