@@ -1,4 +1,4 @@
-import { ADD, EDIT, DELETE } from '../action/appAction';
+import { ADD, EDIT, DELETE } from '../actions/appActions';
 
 const appReducer = (state = [], action) => {
   switch (action.type) {
