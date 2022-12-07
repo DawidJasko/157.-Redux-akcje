@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addRate, editRate } from './actions/appActions';
 
-const Form = ({
-  addRate,
-  author = '',
-  callback,
-  comment,
-  editRate,
-  id,
-  rate = 0,
-}) => {
+const Form = ({ author = '', callback, comment, id, rate = 0 }) => {
   const [authorInput, setAuthorInput] = useState(author);
   const [rateInput, setRateInput] = useState(rate);
   const [commentInput, setcommentInput] = useState(comment);
+
+  const dispath = useDispatch();
 
   const handleChangeAuthor = (event) => setAuthorInput(event.target.value);
   const handleChangeRate = (event) => setRateInput(event.target.value);
@@ -36,7 +30,7 @@ const Form = ({
 
     console.log(rateObject);
 
-    id ? editRate(rateObject) : addRate(rateObject);
+    id ? dispath(editRate(rateObject)) : dispath(addRate(rateObject));
 
     if (id) {
       callback();
@@ -76,11 +70,4 @@ const Form = ({
   );
 };
 
-const connectActionsToProps = {
-  addRate,
-  editRate,
-};
-
-const FormConsumer = connect(null, connectActionsToProps)(Form);
-
-export default FormConsumer;
+export default Form;

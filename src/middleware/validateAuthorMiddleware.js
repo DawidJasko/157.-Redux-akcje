@@ -3,9 +3,9 @@ import { ADD } from '../actions/appActions';
 export const validateAuthorMiddleware =
   ({ dispath }) =>
   (next) =>
-  ({ payload, type }) => {
+  (action) => {
     console.log('Jesteśmy w middlewarze :) ');
-    if (type === ADD && !payload.author.lenght) {
+    if (action.type === ADD && !action.payload.author.length) {
       console.warn('Autor nie ma imienia i nazwiska');
       return;
     }
